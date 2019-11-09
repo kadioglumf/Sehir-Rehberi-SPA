@@ -32,7 +32,7 @@ export class CityService {
   addCity(city){
     this.httpClient.post(this.path+'cities/add',city).subscribe(data=>{
       this.alertifyService.success("Şehir başarıyla eklendi.")
-      this.router.navigateByUrl(this.path+'city')
+      this.router.navigateByUrl('city')
     });
   }
 }
