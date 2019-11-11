@@ -7,16 +7,16 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="city" routerLinkActive="active">City <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="city" routerLinkActive="active">City <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="value" routerLinkActive="active">Values</a>
+        <a class="nav-link" routerLink="value" routerLinkActive="active">Values</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="cityadd" routerLinkActive="active">Add City</a>
+        <a class="nav-link" routerLink="cityadd" routerLinkActive="active">Add City</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" routerLink="register" routerLinkActive="active">Register</a>
       </li>
     </ul>
     <form *ngIf="!isAuthenticated" #loginForm="ngForm" (ngSubmit)="login()" class="form-inline my-2 my-lg-0">
@@ -24,5 +24,6 @@
       <input class="form-control mr-sm-2" name="password" [(ngModel)] ="loginUser.password" required type="password" placeholder="password">
       <button class="btn btn-secondary my-2 my-sm-0" type="submit" [disabled]="!loginForm.valid">Login</button>
     </form>
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="logOut()" *ngIf="isAuthenticated">Log Out</button>
   </div>
 </nav>

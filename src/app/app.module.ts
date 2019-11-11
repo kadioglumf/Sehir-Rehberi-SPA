@@ -15,7 +15,8 @@ import { ValueComponent } from './value/value.component';
 import { PhotoComponent } from './photo/photo.component';
 import {CityDetailComponent} from './city/city-detail/city-detail.component';
 import {CityAddComponent} from './city/city-add/city-add.component';
-
+import { RegisterComponent } from './register/register.component';
+import {NgxEditorModule} from 'ngx-editor';
 
 @NgModule({
    declarations: [
@@ -25,7 +26,8 @@ import {CityAddComponent} from './city/city-add/city-add.component';
       CityComponent,
       PhotoComponent,
       CityDetailComponent,
-      CityAddComponent
+      CityAddComponent,
+      RegisterComponent
    ],
    imports: [
       BrowserModule,
@@ -34,9 +36,12 @@ import {CityAddComponent} from './city/city-add/city-add.component';
       RouterModule.forRoot(appRoutes),
       NgxGalleryModule,
       FormsModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      NgxEditorModule
    ],
-   providers: [AlertifyService],
+   providers: [
+      AlertifyService
+   ],
    bootstrap: [
       AppComponent
    ]
