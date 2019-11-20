@@ -11,6 +11,6 @@ export const appRoutes : Routes = [
     { path: "cityadd", component: CityAddComponent },
     { path: "value", component: ValueComponent },
     { path: "cityDetail/:cityId", component: CityDetailComponent },
-    { path: "**", redirectTo: "city", pathMatch: "full" }
+    { path: "**", redirectTo: "register", pathMatch: "full" }
 ];
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { FormBuilder,FormGroup,Validators,FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -9,35 +9,39 @@ import { FormBuilder,FormGroup,Validators,FormControl } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authService:AuthService,private formBuilder:FormBuilder) { }
+  constructor(private authService: AuthService, private formBuilder: FormBuilder) { }
 
-  registerForm:FormGroup;
-  registerUser:any={};
+  registerForm: FormGroup;
+  registerUser: any = {};
 
   ngOnInit() {
-    this.createRegisterFrom();
+    this.createRegisterForm();
   }
 
-  createRegisterFrom(){
+  createRegisterForm() {
     this.registerForm = this.formBuilder.group(
       {
-        username:["",Validators.required],
-        password:["",[Validators.required,Validators.minLength(4),Validators.maxLength(18)]],
-        confirm_password:["",Validators.required]
+        username: ["", Validators.required],
+        password: ["", [Validators.required, Validators.minLength(4), Validators.maxLength(18)]],
+        confirm_password: ["", Validators.required]
       },
-      {validator:this.passwordMatchValidator}
+      { validator: this.passwordMatchValidator }
     )
   }
 
-  passwordMatchValidator(g:FormGroup){
-    return g.get("password").value === g.get("confirm_password").value ?null:{missMatch:true};
+  passwordMatchValidator(g: FormGroup) {
+    return g.get("password").value === g.get("confirm_password").value ? null : { missMatch: true };
   }
 
-  register(){
-    if(this.registerForm.valid){
-      this.registerUser = Object.assign({},this.registerForm.value)
+  register() {
+    if (this.registerForm.valid) {
+      this.registerUser = Object.assign({}, this.registerForm.value)
       this.authService.register(this.registerUser);
     }
+  }
+
+  get isAuthenticated(){
+    return this.authService.loggedIn();
   }
 
 }

@@ -41,7 +41,7 @@ import {NgxEditorModule} from 'ngx-editor';
    ],
    providers: [
       AlertifyService
-   ],
+      ],
    bootstrap: [
       AppComponent
    ]

@@ -25,9 +25,9 @@ export class AuthService {
     headers = headers.append("Content-Type", "application/json");
     this.httpClient.post(this.path + "login", loginUser, { headers: headers })
       .subscribe(data => {
-        this.saveToken(data);
-        this.userToken = data;
-        this.decodedToken = this.jwtHelper.decodeToken(data.toString());
+        this.saveToken(Object.values(data).toString());
+        this.userToken = Object.values(data).toString();
+        this.decodedToken = this.jwtHelper.decodeToken(Object.values(data).toString());
         this.alertifyService.success("Sisteme giriş yapıldı");
         this.router.navigateByUrl('city')
       });
@@ -37,8 +37,13 @@ export class AuthService {
   register(registerUser: RegisterUser) {
     let headers = new HttpHeaders;
     headers = headers.append("Content-Type", "application/json");
-    this.httpClient.post(this.path + 'api/users/sign-up', registerUser, { headers: headers })
+    this.httpClient.post(this.path + 'register', registerUser, { headers: headers })
       .subscribe(data => {
+        this.saveToken(Object.values(data).toString());
+        this.userToken = Object.values(data).toString();
+        this.decodedToken = this.jwtHelper.decodeToken(Object.values(data).toString());
+        this.alertifyService.success("Sisteme giriş yapıldı");
+        this.router.navigateByUrl('city')
 
       })
   }
