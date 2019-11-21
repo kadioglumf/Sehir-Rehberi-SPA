@@ -17,6 +17,7 @@ import {CityDetailComponent} from './city/city-detail/city-detail.component';
 import {CityAddComponent} from './city/city-add/city-add.component';
 import { RegisterComponent } from './register/register.component';
 import {NgxEditorModule} from 'ngx-editor';
+import { AuthGuard } from './helper/auth.guard';
 
 @NgModule({
    declarations: [
@@ -40,8 +41,9 @@ import {NgxEditorModule} from 'ngx-editor';
       NgxEditorModule
    ],
    providers: [
-      AlertifyService
-      ],
+      AlertifyService,
+      AuthGuard
+   ],
    bootstrap: [
       AppComponent
    ]
