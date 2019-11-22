@@ -1,3 +1,17 @@
 .btn-group{
     background-color: white;
+    border-radius: 9px;
+    
+}
+.btn-group  :hover{
+    background-color: red;
+    
+}
+#edit{
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+#view{
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
 }

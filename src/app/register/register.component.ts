@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  get isAuthenticated(){
+  get isAuthenticated() {
     return this.authService.loggedIn();
   }
 

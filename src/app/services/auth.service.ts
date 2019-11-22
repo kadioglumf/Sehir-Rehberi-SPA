@@ -55,6 +55,7 @@ export class AuthService {
 
   logOut() {
     localStorage.removeItem(this.TOKEN_KEY);
+    this.router.navigateByUrl('login');
   }
 
   loggedIn() {

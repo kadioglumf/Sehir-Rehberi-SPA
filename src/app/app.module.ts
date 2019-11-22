@@ -18,6 +18,7 @@ import {CityAddComponent} from './city/city-add/city-add.component';
 import { RegisterComponent } from './register/register.component';
 import {NgxEditorModule} from 'ngx-editor';
 import { AuthGuard } from './helper/auth.guard';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
    declarations: [
@@ -28,8 +29,9 @@ import { AuthGuard } from './helper/auth.guard';
       PhotoComponent,
       CityDetailComponent,
       CityAddComponent,
-      RegisterComponent
-   ],
+      RegisterComponent,
+      LoginComponent
+      ],
    imports: [
       BrowserModule,
       AppRoutingModule,
