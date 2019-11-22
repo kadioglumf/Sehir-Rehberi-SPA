@@ -42,9 +42,21 @@
         >
       </li>
     </ul>
-    <input class="search" *ngIf="isAuthenticated" placeholder="search" />
-    <button class="button-two" type="submit"
-    (click)="logOut()"
-    *ngIf="isAuthenticated"><span>Logout</span></button>
+    <div class="wrap" *ngIf="isAuthenticated">
+      <div class="search">
+        <input placeholder="Search" class="searchTerm" />
+        <button type="submit" class="searchButton">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+    </div>
+    <button
+      class="button-two"
+      type="submit"
+      (click)="logOut()"
+      *ngIf="isAuthenticated"
+    >
+      <span>Log Out</span>
+    </button>
   </div>
 </nav>

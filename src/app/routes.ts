@@ -14,6 +14,6 @@ export const appRoutes : Routes = [
     { path: "cityadd", component: CityAddComponent,canActivate:[AuthGuard] },
     { path: "value", component: ValueComponent ,canActivate:[AuthGuard]},
     { path: "cityDetail/:cityId", component: CityDetailComponent ,canActivate:[AuthGuard]},
-    { path: "**", redirectTo: "login", pathMatch: "full" }
+    { path: "**", redirectTo: "city", pathMatch: "full" }
 ];
 
