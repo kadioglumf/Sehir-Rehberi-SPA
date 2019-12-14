@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import {NgxGalleryModule} from 'ngx-gallery';
@@ -19,6 +19,7 @@ import { RegisterComponent } from './register/register.component';
 import {NgxEditorModule} from 'ngx-editor';
 import { AuthGuard } from './helper/auth.guard';
 import { LoginComponent } from './login/login.component';
+import { AuthHtppInterceptorService } from './services/AuthHtppInterceptor.service';
 
 @NgModule({
    declarations: [
@@ -44,7 +45,10 @@ import { LoginComponent } from './login/login.component';
    ],
    providers: [
       AlertifyService,
-      AuthGuard
+      AuthGuard,
+      {  
+         provide:HTTP_INTERCEPTORS, useClass:AuthHtppInterceptorService, multi:true 
+       }
    ],
    bootstrap: [
       AppComponent
