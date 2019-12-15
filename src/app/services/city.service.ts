@@ -15,25 +15,29 @@ export class CityService {
     private alertifyService: AlertifyService,
     private router:Router) { }
 
-  path = "http://localhost:8080/api/";
+  path = "http://localhost:8080/users/" + this.getUserId();
 
   getCities(): Observable<City[]> {
-    return this.httpClient.get<City[]>(this.path + "cities");
+    return this.httpClient.get<City[]>(this.path + "/cities");
   }
 
   getCityById(cityId): Observable<City> {
-    return this.httpClient.get<City>(this.path + "cities/detail/" + cityId)
+    return this.httpClient.get<City>(this.path + "/cities/detail/" + cityId)
   }
 
   getPhotosByCity(cityId): Observable<Photo[]> {
-    return this.httpClient.get<Photo[]>(this.path + "cities/photos/" + cityId)
+    return this.httpClient.get<Photo[]>(this.path + "/cities/photos/" + cityId)
   }
 
   addCity(city){
-    this.httpClient.post(this.path+'cities/add',city).subscribe(data=>{
+    this.httpClient.post(this.path + '/cities/add',city).subscribe(data=>{
       this.alertifyService.success("Şehir başarıyla eklendi.")
       this.router.navigateByUrl('city')
     });
+  }
+
+  getUserId(){
+    return localStorage.getItem("userId");
   }
 }
 

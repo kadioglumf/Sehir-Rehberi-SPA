@@ -15,20 +15,21 @@ export class AuthService {
   constructor(private httpClient: HttpClient, private router: Router, private alertifyService: AlertifyService) { }
 
   path = "http://localhost:8080/";
-  userToken: any;
+  userId: any;
   decodedToken: any;
   jwtHelper: JwtHelper = new JwtHelper();
   TOKEN_KEY = "token";
+  USER_ID = "userId";
 
   login(loginUser: LoginUser) {
     let headers = new HttpHeaders;
     headers = headers.append("Content-Type", "application/json");
     this.httpClient.post(this.path + "login", loginUser, { headers: headers })
       .subscribe(data => {
-        this.saveToken(Object.values(data).toString());
-        this.userToken = Object.values(data).toString();
-        this.decodedToken = this.jwtHelper.decodeToken(Object.values(data).toString());
-        this.alertifyService.success("Sisteme giriş yapıldı");
+        this.saveToken(JSON.stringify(data));
+        this.saveUserId(JSON.stringify(data));
+        this.decodedToken = this.jwtHelper.decodeToken(JSON.stringify(data));
+        this.alertifyService.success("Giriş Başarıyla Yapıldı");
         this.router.navigateByUrl('city')
       });
 
@@ -40,7 +41,6 @@ export class AuthService {
     this.httpClient.post(this.path + 'register', registerUser, { headers: headers })
       .subscribe(data => {
         this.saveToken(Object.values(data).toString());
-        this.userToken = Object.values(data).toString();
         this.decodedToken = this.jwtHelper.decodeToken(Object.values(data).toString());
         this.alertifyService.success("Sisteme giriş yapıldı");
         this.router.navigateByUrl('city')
@@ -48,13 +48,19 @@ export class AuthService {
       })
   }
 
-  saveToken(token) {
-    localStorage.setItem(this.TOKEN_KEY, token)
+  saveToken(data) {
+    let saveToken = JSON.parse(data)
+    localStorage.setItem(this.TOKEN_KEY, saveToken.token)
 
   }
 
+  saveUserId(data){
+    let userId = JSON.parse(data)
+    localStorage.setItem(this.USER_ID,userId.userId)
+  }
+
   logOut() {
-    localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.clear();
     this.router.navigateByUrl('login');
   }
 

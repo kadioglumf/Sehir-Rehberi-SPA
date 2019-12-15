@@ -11,7 +11,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { CityComponent } from './city/city.component';
-import { ValueComponent } from './value/value.component';
 import { PhotoComponent } from './photo/photo.component';
 import {CityDetailComponent} from './city/city-detail/city-detail.component';
 import {CityAddComponent} from './city/city-add/city-add.component';
@@ -25,7 +24,6 @@ import { AuthHtppInterceptorService } from './services/AuthHtppInterceptor.servi
    declarations: [
       AppComponent,
       NavComponent,
-      ValueComponent,
       CityComponent,
       PhotoComponent,
       CityDetailComponent,
