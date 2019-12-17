@@ -28,7 +28,6 @@ export class AuthService {
       .subscribe(data => {
         this.saveToken(JSON.stringify(data));
         this.saveUserId(JSON.stringify(data));
-        this.decodedToken = this.jwtHelper.decodeToken(JSON.stringify(data));
         this.alertifyService.success("Giriş Başarıyla Yapıldı");
         this.router.navigateByUrl('city')
       });
@@ -40,8 +39,8 @@ export class AuthService {
     headers = headers.append("Content-Type", "application/json");
     this.httpClient.post(this.path + 'register', registerUser, { headers: headers })
       .subscribe(data => {
-        this.saveToken(Object.values(data).toString());
-        this.decodedToken = this.jwtHelper.decodeToken(Object.values(data).toString());
+        this.saveToken(JSON.stringify(data));
+        this.saveUserId(JSON.stringify(data));
         this.alertifyService.success("Sisteme giriş yapıldı");
         this.router.navigateByUrl('city')
 
@@ -68,14 +67,11 @@ export class AuthService {
     return tokenNotExpired(this.TOKEN_KEY)
   }
 
-  getCurrentUserId(){
-    return this.jwtHelper.decodeToken(this.token).nameid;
-  }
-
   get token(){
     
     return localStorage.getItem(this.TOKEN_KEY);
   }
+
   loggedInn(){
     return !!localStorage.getItem(this.TOKEN_KEY); 
   }

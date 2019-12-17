@@ -37,7 +37,8 @@ export class CityService {
   }
 
   getUserId(){
-    return localStorage.getItem("userId");
+    const userId = localStorage.getItem("userId");
+    return userId.toString();
   }
 }
 
