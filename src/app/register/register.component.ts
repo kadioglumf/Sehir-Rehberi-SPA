@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-register',
@@ -11,28 +12,27 @@ export class RegisterComponent implements OnInit {
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder) { }
 
+
   registerForm: FormGroup;
   registerUser: any = {};
 
   ngOnInit() {
     this.createRegisterForm();
+    this.inputValidator();
   }
+
 
   createRegisterForm() {
     this.registerForm = this.formBuilder.group(
       {
-        username: ["", Validators.required],
+        firstName: ["", Validators.required],
+        lastName: ["", Validators.required],
+        email: ["", Validators.required],
         password: ["", [Validators.required, Validators.minLength(4), Validators.maxLength(18)]],
-        confirm_password: ["", Validators.required]
-      },
-      { validator: this.passwordMatchValidator }
+      }
     )
   }
-
-  passwordMatchValidator(g: FormGroup) {
-    return g.get("password").value === g.get("confirm_password").value ? null : { missMatch: true };
-  }
-
+  
   register() {
     if (this.registerForm.valid) {
       this.registerUser = Object.assign({}, this.registerForm.value)
@@ -42,6 +42,41 @@ export class RegisterComponent implements OnInit {
 
   get isAuthenticated() {
     return this.authService.loggedIn();
+  }
+
+  inputValidator() {
+    $(document).ready(function () {
+      $("input").keyup(function () {
+        const id = $(this).attr("id");
+        var value = $(this).val();
+        if (id === "email") {
+          if (value.includes("@")) {
+            $(this).removeClass("input error").addClass("input");
+          }
+          else {
+            $(this).addClass("input error");
+          }
+        }
+        else if (id === "firstName" || id === "lastName") {
+          if (value.length < 3) {
+            $(this).addClass("input error");
+          }
+          else {
+            $(this).removeClass("input error").addClass("input");
+          }
+        }
+        else if (id === "password") {
+          if (value.length < 8) {
+            $(this).addClass("input error");
+          }
+          else {
+            $(this).removeClass("input error").addClass("input");
+
+          }
+        }
+
+      });
+    });
   }
 
 }

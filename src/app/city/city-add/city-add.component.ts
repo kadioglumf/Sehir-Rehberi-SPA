@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CityService } from 'src/app/services/city.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { City } from 'src/app/models/city';
+import { AuthService } from 'src/app/services/auth.service';
+import { FileUploader } from 'ng2-file-upload';
 
 @Component({
   selector: 'app-city-add',
@@ -12,11 +14,19 @@ import { City } from 'src/app/models/city';
 export class CityAddComponent implements OnInit {
 
   constructor(private cityService: CityService,
-    private formBuilder: FormBuilder
+              private formBuilder: FormBuilder,
+              private authService : AuthService
   ) { }
 
   city: City;
   cityAddForm: FormGroup;
+  baseUrl: 'http://localhost:8080/users/';
+  currentUser:any;
+  uploader:FileUploader;
+
+  ngOnInit() {
+    this.createCityForm();
+  }
 
   createCityForm() {
     this.cityAddForm = this.formBuilder.group(
@@ -26,17 +36,11 @@ export class CityAddComponent implements OnInit {
       })
   }
 
-  ngOnInit() {
-    this.createCityForm();
-  }
-
   addCity() {
     if (this.cityAddForm.valid) {
       this.city = Object.assign({}, this.cityAddForm.value);
-      //ToDo
-      this.city.userId = 1;
+      this.city.user_id = this.authService.userId;
       this.cityService.addCity(this.city);
-
     }
   }
 

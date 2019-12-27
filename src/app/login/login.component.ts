@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
   loginUser:any ={};
 
   ngOnInit() {
+    this.inputValidator();
   }
 
   login(){
@@ -29,5 +31,33 @@ export class LoginComponent implements OnInit {
     return this.authService.loggedIn();
   }
   
+
+  inputValidator() {
+    $(document).ready(function () {
+      $("input").keyup(function () {
+        const id = $(this).attr("id");
+        var value = $(this).val();
+        if (id === "email") {
+          if (value.includes("@")) {
+            $(this).removeClass("input error").addClass("input");
+          }
+          else {
+            $(this).addClass("input error");
+          }
+        }
+        
+        else if (id === "password") {
+          if (value.length < 8) {
+            $(this).addClass("input error");
+          }
+          else {
+            $(this).removeClass("input error").addClass("input");
+
+          }
+        }
+
+      });
+    });
+  }
 
 }

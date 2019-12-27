@@ -15,7 +15,6 @@ export class AuthService {
   constructor(private httpClient: HttpClient, private router: Router, private alertifyService: AlertifyService) { }
 
   path = "http://localhost:8080/";
-  userId: any;
   decodedToken: any;
   jwtHelper: JwtHelper = new JwtHelper();
   TOKEN_KEY = "token";
@@ -43,7 +42,6 @@ export class AuthService {
         this.saveUserId(JSON.stringify(data));
         this.alertifyService.success("Sisteme giriş yapıldı");
         this.router.navigateByUrl('city')
-
       })
   }
 
@@ -55,12 +53,12 @@ export class AuthService {
 
   saveUserId(data){
     let userId = JSON.parse(data)
-    localStorage.setItem(this.USER_ID,userId.userId)
+    localStorage.setItem(this.USER_ID,userId.id)
   }
 
   logOut() {
     localStorage.clear();
-    this.router.navigateByUrl('login');
+    this.router.navigateByUrl('city');
   }
 
   loggedIn() {
@@ -70,6 +68,10 @@ export class AuthService {
   get token(){
     
     return localStorage.getItem(this.TOKEN_KEY);
+  }
+
+  get userId(){
+    return Number(localStorage.getItem('userId'));
   }
 
   loggedInn(){

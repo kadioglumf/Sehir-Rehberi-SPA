@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="file-upload">
+        <div class="image-upload-wrap">
+          <input
+            class="file-upload-input"
+            type="file"
+            ng2FileSelect
+            [uploader]="uploader"
+          />
+          <div class="drag-text">
+            <h3>Drag and drop a file or select add Image</h3>
+          </div>
+        </div>
+        <button class="file-upload-btn" type="button" (click)="uploadPhoto()">
+          Upload
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

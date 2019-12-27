@@ -1,5 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">City Guide</a>
+  <a class="navbar-brand" routerLink="city" routerLinkActive="active"
+    >City Guide</a
+  >
   <button
     class="navbar-toggler"
     type="button"
@@ -15,25 +17,11 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a
-          class="nav-link"
-          routerLink="city"
-          routerLinkActive="active"
-          *ngIf="isAuthenticated"
+        <a class="nav-link" routerLink="city" routerLinkActive="active"
           >City <span class="sr-only">(current)</span></a
         >
       </li>
-      <!--
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          routerLink="value"
-          routerLinkActive="active"
-          *ngIf="isAuthenticated"
-          >Values</a
-        >
-      </li>
-      -->
+
       <li class="nav-item">
         <a
           class="nav-link"
@@ -59,6 +47,24 @@
       *ngIf="isAuthenticated"
     >
       <span>Log Out</span>
+    </button>
+    <button
+      class="button"
+      id="login"
+      click="login()"
+      *ngIf="!isAuthenticated"
+      routerLink="/login"
+    >
+      Login
+    </button>
+    <button
+      class="button"
+      id="signup"
+      click="register()"
+      *ngIf="!isAuthenticated"
+      routerLink="/register"
+    >
+      Sign Up
     </button>
   </div>
 </nav>

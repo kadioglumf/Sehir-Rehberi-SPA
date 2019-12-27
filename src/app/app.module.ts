@@ -19,6 +19,8 @@ import {NgxEditorModule} from 'ngx-editor';
 import { AuthGuard } from './helper/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { AuthHtppInterceptorService } from './services/AuthHtppInterceptor.service';
+import {FileUploadModule} from 'ng2-file-upload';
+
 
 @NgModule({
    declarations: [
@@ -39,7 +41,8 @@ import { AuthHtppInterceptorService } from './services/AuthHtppInterceptor.servi
       NgxGalleryModule,
       FormsModule,
       ReactiveFormsModule,
-      NgxEditorModule
+      NgxEditorModule,
+      FileUploadModule
    ],
    providers: [
       AlertifyService,

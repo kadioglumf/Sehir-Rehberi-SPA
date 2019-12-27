@@ -1,15 +1,13 @@
+.page{
+  margin-top: 50px;
+}
 .btn-group {
   background-color: white;
-  border-radius: 9px;
+  border-radius: 8px;
 }
 .btn-group :hover {
   background-color: rgb(26, 207, 231);
+  border-radius: 6px;
 }
-#edit {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-#view {
-  border-bottom-left-radius: 3px;
-  border-top-left-radius: 3px;
-}
+
+

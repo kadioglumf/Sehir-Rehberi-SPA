@@ -4,7 +4,7 @@ export class City {
     id:number;
     name:string;
     description:string;
-    userId:number;
+    user_id:number;
     photos:Photo[];
 
 }

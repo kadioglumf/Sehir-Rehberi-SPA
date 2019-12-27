@@ -13,32 +13,38 @@ export class CityService {
 
   constructor(private httpClient: HttpClient,
     private alertifyService: AlertifyService,
-    private router:Router) { }
+    private router: Router) { }
 
+  baseUrl = "http://localhost:8080";  
   path = "http://localhost:8080/users/" + this.getUserId();
-
+  /*
+    getCities(): Observable<City[]> {
+      return this.httpClient.get<City[]>(this.path + "/cities");
+    }
+  */
   getCities(): Observable<City[]> {
-    return this.httpClient.get<City[]>(this.path + "/cities");
+    return this.httpClient.get<City[]>(this.baseUrl + "/cities");
   }
 
   getCityById(cityId): Observable<City> {
-    return this.httpClient.get<City>(this.path + "/cities/detail/" + cityId)
+    return this.httpClient.get<City>(this.baseUrl + "/cities/detail/" + cityId)
   }
 
   getPhotosByCity(cityId): Observable<Photo[]> {
-    return this.httpClient.get<Photo[]>(this.path + "/cities/photos/" + cityId)
+    return this.httpClient.get<Photo[]>(this.baseUrl + "/cities/" + cityId + "/photos")
   }
 
-  addCity(city){
-    this.httpClient.post(this.path + '/cities/add',city).subscribe(data=>{
+  addCity(city) {
+    this.httpClient.post(this.path + '/cities/add', city).subscribe(data => {
       this.alertifyService.success("Şehir başarıyla eklendi.")
       this.router.navigateByUrl('city')
     });
   }
 
-  getUserId(){
-    const userId = localStorage.getItem("userId");
-    return userId.toString();
+  getUserId() {
+    let userId = '';
+    userId = localStorage.getItem("userId");
+    return userId;
   }
 }
 
