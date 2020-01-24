@@ -4,6 +4,7 @@ import { AlertifyService } from '../services/alertify.service'
 import { AuthService } from '../services/auth.service'
 import { ActivatedRoute, Router, NavigationStart } from '@angular/router'
 import { Photo } from '../models/photo'
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-photo',
@@ -16,7 +17,8 @@ export class PhotoComponent implements OnInit {
 
   constructor(private authService: AuthService,
     private alertifyService: AlertifyService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private spinner:NgxSpinnerService
       ) { }
 
   photos: Photo[] = [];
@@ -38,6 +40,11 @@ export class PhotoComponent implements OnInit {
   
   uploadPhoto() {
     this.uploader.uploadAll();
+    this.spinner.show();
+    setTimeout(function(){
+      location.reload(true);
+    },4000)
+    // location.reload(true);
   }
 
 
@@ -55,7 +62,9 @@ export class PhotoComponent implements OnInit {
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
 
     this.uploader.onSuccessItem = (item, response, status, headers) => {
+      
       if (response) {
+       
         const res: Photo = JSON.parse(response);
         const photo = {
           id: res.id,
@@ -67,6 +76,7 @@ export class PhotoComponent implements OnInit {
         this.photos.push(photo)
       }
     }
+
   }
 
 
