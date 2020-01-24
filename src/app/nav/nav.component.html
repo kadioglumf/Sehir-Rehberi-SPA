@@ -25,14 +25,14 @@
       <li class="nav-item">
         <a
           class="nav-link"
-          routerLink="cityadd"
+          routerLink="city-add"
           routerLinkActive="active"
           *ngIf="isAuthenticated"
           >Add City</a
         >
       </li>
     </ul>
-    <div class="wrap" *ngIf="isAuthenticated">
+    <div class="wrap">
       <div class="search">
         <input placeholder="Search" class="searchTerm" />
         <button type="submit" class="searchButton">

@@ -15,8 +15,8 @@ export class CityService {
     private alertifyService: AlertifyService,
     private router: Router) { }
 
-  baseUrl = "http://localhost:8080";  
-  path = "http://localhost:8080/users/" + this.getUserId();
+  baseUrl = "https://city-guide-01.herokuapp.com";  
+  path = "https://city-guide-01.herokuapp.com/users/" + this.getUserId();
   /*
     getCities(): Observable<City[]> {
       return this.httpClient.get<City[]>(this.path + "/cities");
@@ -37,7 +37,7 @@ export class CityService {
   addCity(city) {
     this.httpClient.post(this.path + '/cities/add', city).subscribe(data => {
       this.alertifyService.success("Şehir başarıyla eklendi.")
-      this.router.navigateByUrl('city')
+      this.router.navigateByUrl('city-detail/'+data["id"])
     });
   }
 

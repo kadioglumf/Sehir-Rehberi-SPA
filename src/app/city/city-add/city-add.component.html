@@ -46,6 +46,7 @@
             >
               Not Girmeniz zorunludur
             </span>
+            <!--
             <div class="add-photo">
               <div class="file-upload">
                 <div class="image-upload-wrap">
@@ -68,6 +69,14 @@
                 </button>
               </div>
             </div>
+            -->
+            <button
+              class="file-upload-btn"
+              type="submit"
+              [disabled]="!cityAddForm.valid"
+            >
+              Create City
+            </button>
           </div>
         </form>
       </div>

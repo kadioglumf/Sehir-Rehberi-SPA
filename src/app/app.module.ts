@@ -20,6 +20,8 @@ import { AuthGuard } from './helper/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { AuthHtppInterceptorService } from './services/AuthHtppInterceptor.service';
 import {FileUploadModule} from 'ng2-file-upload';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -42,11 +44,13 @@ import {FileUploadModule} from 'ng2-file-upload';
       FormsModule,
       ReactiveFormsModule,
       NgxEditorModule,
-      FileUploadModule
+      FileUploadModule,
+      NgxSpinnerModule,
+      BrowserAnimationsModule
    ],
    providers: [
       AlertifyService,
-      AuthGuard,
+      [AuthGuard],
       {  
          provide:HTTP_INTERCEPTORS, useClass:AuthHtppInterceptorService, multi:true 
        }

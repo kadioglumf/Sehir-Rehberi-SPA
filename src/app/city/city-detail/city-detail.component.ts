@@ -5,6 +5,7 @@ import { City } from '../../models/city';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import { Photo } from '../../models/photo';
 import { AuthService } from 'src/app/services/auth.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-city-detail',
@@ -16,7 +17,8 @@ export class CityDetailComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               private cityService: CityService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private spinner:NgxSpinnerService) { }
 
   city: City;
   photos: Photo[] = []
@@ -30,9 +32,10 @@ export class CityDetailComponent implements OnInit {
   }
 
   getCityById(cityId) {
+    this.spinner.show();
     this.cityService.getCityById(cityId).subscribe(data => {
       this.city = data;
-      this.getPhotosByCity(cityId)
+      this.getPhotosByCity(cityId);
     })
   }
 
@@ -40,6 +43,7 @@ export class CityDetailComponent implements OnInit {
     this.cityService.getPhotosByCity(cityId).subscribe(data => {
       this.photos = data;
       this.setGallery();
+      this.spinner.hide();
     })
   }
 

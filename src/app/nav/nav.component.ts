@@ -12,7 +12,7 @@ export class NavComponent implements OnInit {
   constructor(private authService:AuthService) { }
 
   loginUser:any ={};
-
+  
   ngOnInit() {
   }
 

@@ -120,7 +120,7 @@ input::-moz-focus-inner {
   border: 0; 
 }
 #submit {
-  color: #707075;
+  color: #d0d0d2;
   margin-top: 40px;
   transition: color 300ms;
 }

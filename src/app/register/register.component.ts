@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import * as $ from 'jquery';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,9 @@ import * as $ from 'jquery';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder) { }
+  constructor(private authService: AuthService, 
+              private formBuilder: FormBuilder,
+              private spinner:NgxSpinnerService) { }
 
 
   registerForm: FormGroup;
@@ -36,7 +39,9 @@ export class RegisterComponent implements OnInit {
   register() {
     if (this.registerForm.valid) {
       this.registerUser = Object.assign({}, this.registerForm.value)
+      this.spinner.show();
       this.authService.register(this.registerUser);
+      this.spinner.hide();
     }
   }
 

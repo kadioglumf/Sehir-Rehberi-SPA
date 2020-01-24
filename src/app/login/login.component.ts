@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import * as $ from 'jquery';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -9,34 +12,46 @@ import * as $ from 'jquery';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService:AuthService) { 
+  constructor(private authService: AuthService,
+    private spinner: NgxSpinnerService,
+    private router: Router) { }
 
-  }
-
-  loginUser:any ={};
+  loginUser: any = {};
+  span: boolean = false;
 
   ngOnInit() {
     this.inputValidator();
   }
 
-  login(){
-    this.authService.login(this.loginUser);
+  login() {
+    this.spinner.show();
+    this.authService.login(this.loginUser).pipe(first()).subscribe(data => {
+    }, error => {
+      this.spinner.hide();
+      this.span = true;
+    });
   }
 
-  logOut(){
+  logOut() {
     this.authService.logOut();
   }
 
-  get isAuthenticated(){
+  get isAuthenticated() {
     return this.authService.loggedIn();
   }
-  
 
   inputValidator() {
     $(document).ready(function () {
+
+      $("input").click(function () {
+        $("div").removeClass("span");
+      })
+
       $("input").keyup(function () {
+
         const id = $(this).attr("id");
         var value = $(this).val();
+
         if (id === "email") {
           if (value.includes("@")) {
             $(this).removeClass("input error").addClass("input");
@@ -45,7 +60,7 @@ export class LoginComponent implements OnInit {
             $(this).addClass("input error");
           }
         }
-        
+
         else if (id === "password") {
           if (value.length < 8) {
             $(this).addClass("input error");
@@ -59,5 +74,6 @@ export class LoginComponent implements OnInit {
       });
     });
   }
+
 
 }

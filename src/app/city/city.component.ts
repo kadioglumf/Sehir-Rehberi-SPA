@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { City } from '../models/city';
 import { CityService } from '../services/city.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 
@@ -12,12 +13,14 @@ import { CityService } from '../services/city.service';
 })
 export class CityComponent implements OnInit {
 
-  constructor(private cityService: CityService) { }
+  constructor(private cityService: CityService,private spinner:NgxSpinnerService) { }
 
   cities: City[]
   ngOnInit() {
+    this.spinner.show();
     this.cityService.getCities().subscribe(data => {
       this.cities = data;
+      this.spinner.hide();
     })
   }
 

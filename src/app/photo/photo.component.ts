@@ -17,11 +17,11 @@ export class PhotoComponent implements OnInit {
   constructor(private authService: AuthService,
     private alertifyService: AlertifyService,
     private activatedRoute: ActivatedRoute
-  ) { }
+      ) { }
 
   photos: Photo[] = [];
   uploader: FileUploader;
-  baseUrl = 'http://localhost:8080/users/';
+  baseUrl = 'https://city-guide-01.herokuapp.com/users/';
   currentMain: Photo;
   currentCity: any;
   currentUser: any;

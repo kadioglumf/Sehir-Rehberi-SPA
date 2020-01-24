@@ -34,7 +34,7 @@
 }
 .container {
   display: flex;
-  height: 320px;
+  height: 50%; /* 320px*/
   margin: 0 auto;
   width: 640px;
 }
@@ -99,6 +99,13 @@ path {
   margin: 40px;
   position: absolute;
 }
+.span{
+  opacity: 0.5;
+  background-color: red;
+}
+.span::after{
+  content: "There was a problem signing in. Check your email address and password or create an account.";
+}
 label {
   color:  #c2c2c5;
   display: block;
@@ -128,7 +135,7 @@ input::-moz-focus-inner {
   border: 0; 
 }
 #submit {
-  color: #707075;
+  color: #d0d0d2;
   margin-top: 40px;
   transition: color 300ms;
 }

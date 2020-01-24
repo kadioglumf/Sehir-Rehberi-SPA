@@ -31,6 +31,7 @@
     "ngx-bootstrap": "^5.2.0",
     "ngx-editor": "^4.1.0",
     "ngx-gallery": "^5.10.0",
+    "ngx-spinner": "^8.1.0",
     "rxjs": "~6.4.0",
     "rxjs-compat": "^6.5.3",
     "rxjs-observable": "0.0.7",

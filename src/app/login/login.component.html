@@ -10,8 +10,11 @@
       </p>
     </div>
     <div class="right">
-      <form class="form" #loginForm="ngForm" (ngSubmit)="login()">
-        <label for="email">email</label>
+      <form class="form" id="form" name="registration" #loginForm="ngForm" (ngSubmit)="login()">
+        <div class="span" *ngIf="span">
+          
+        </div>
+        <label for="email">Email</label>
         <input
           type="email"
           id="email"
@@ -19,7 +22,7 @@
           [(ngModel)]="loginUser.email"
           required
           type="text"
-          placeholder="Please enter the email"
+          placeholder="fatih@kadioglu.com"
           
         />
         <label for="password">Password</label>
@@ -30,7 +33,7 @@
           [(ngModel)]="loginUser.password"
           required
           type="password"
-          placeholder="password"
+          placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
         />
         <input
           type="submit"
@@ -42,3 +45,11 @@
     </div>
   </div>
 </div>
+<ngx-spinner
+bdColor="rgba(51,51,51,0.8)"
+size="medium"
+color="#fff"
+type="ball-scale-multiple"
+>
+<p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
