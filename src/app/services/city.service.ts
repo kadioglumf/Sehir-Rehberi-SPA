@@ -15,8 +15,8 @@ export class CityService {
     private alertifyService: AlertifyService,
     private router: Router) { }
 
-  baseUrl = "https://city-guide-01.herokuapp.com";  
-  path = "https://city-guide-01.herokuapp.com/users/" + this.getUserId();
+  baseUrl = "http://localhost:8080";  
+  path = "http://localhost:8080/users/" + this.getUserId();
   /*
     getCities(): Observable<City[]> {
       return this.httpClient.get<City[]>(this.path + "/cities");

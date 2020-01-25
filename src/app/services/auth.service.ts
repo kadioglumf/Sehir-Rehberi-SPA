@@ -15,7 +15,7 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient, private router: Router, private alertifyService: AlertifyService) { }
 
-  path = "https://city-guide-01.herokuapp.com/";
+  path = "http://localhost:8080/";
   decodedToken: any;
   jwtHelper: JwtHelper = new JwtHelper();
   TOKEN_KEY = "token";

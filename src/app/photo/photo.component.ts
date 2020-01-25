@@ -23,7 +23,7 @@ export class PhotoComponent implements OnInit {
 
   photos: Photo[] = [];
   uploader: FileUploader;
-  baseUrl = 'https://city-guide-01.herokuapp.com/users/';
+  baseUrl = 'http://localhost:8080/users/';
   currentMain: Photo;
   currentCity: any;
   currentUser: any;
